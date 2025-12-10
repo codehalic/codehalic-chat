@@ -8,7 +8,8 @@
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
-      "@repo/utils": ["../../packages/utils/src"]
+      "@repo/utils": ["../../packages/utils/src"],
+      "@repo/contracts": ["../../packages/contracts/src"]
     }
   },
   "include": ["src"]

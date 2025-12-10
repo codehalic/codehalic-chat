@@ -7,7 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@repo/ui": path.resolve(__dirname, "../../packages/ui/src"),
-      "@repo/utils": path.resolve(__dirname, "../../packages/utils/src")
+      "@repo/utils": path.resolve(__dirname, "../../packages/utils/src"),
+      "@repo/contracts": path.resolve(__dirname, "../../packages/contracts/src")
     }
   }
 });

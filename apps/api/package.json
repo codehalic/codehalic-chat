@@ -19,6 +19,7 @@
     "@nestjs/platform-socket.io": "^11.1.9",
     "@nestjs/websockets": "^11.1.9",
     "@repo/utils": "file:../../packages/utils",
+    "@repo/contracts": "file:../../packages/contracts",
     "@socket.io/admin-ui": "^0.5.1",
     "@socket.io/redis-adapter": "^8.2.0",
     "class-transformer": "^0.5.1",
