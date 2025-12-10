@@ -6,12 +6,14 @@ import { RedisModule } from '../redis/redis.module';
 import { AuthController } from './auth.controller';
 import { OtpService } from './otp.service';
 import { AuthService } from './auth.service';
+import { SmsModule } from '../sms/sms.module';
 
 @Module({
   imports: [
     ConfigModule,
     UsersModule,
     RedisModule,
+    SmsModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -26,4 +28,3 @@ import { AuthService } from './auth.service';
   exports: [JwtModule],
 })
 export class AuthModule {}
-
