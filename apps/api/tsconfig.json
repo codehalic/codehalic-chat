@@ -1,0 +1,15 @@
+{
+  "extends": "../../packages/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "CommonJS",
+    "types": ["node"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@repo/utils": ["../../packages/utils/src"]
+    }
+  },
+  "include": ["src"]
+}
