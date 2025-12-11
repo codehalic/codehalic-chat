@@ -33,5 +33,11 @@ export class UsersService {
       )
       .exec();
   }
-}
 
+  async findAllMinimal(limit = 200): Promise<Pick<User, 'phone' | 'firstName' | 'lastName'>[]> {
+    return this.userModel
+      .find({}, { phone: 1, firstName: 1, lastName: 1 })
+      .limit(Math.max(1, Math.min(1000, limit)))
+      .exec() as any;
+  }
+}

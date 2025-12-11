@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Avatar } from "../ui/avatar";
 import { Icon } from "../ui/icon";
 import { ChatList } from "./ChatList";
+import { UsersDirectory } from './UsersDirectory'
 import { useTheme } from "../../store/theme";
 
 export function Sidebar() {
@@ -16,7 +17,7 @@ export function Sidebar() {
   const { mode, toggle, setMode } = useTheme();
 
   return (
-    <div className="flex h-full w-80 flex-col border-r bg-white">
+    <div className="flex h-full w-80 flex-col border-r border-border bg-secondary">
       <div className="flex items-center gap-2 p-3">
         <Avatar
           name={
@@ -47,32 +48,9 @@ export function Sidebar() {
           </select>
         </div>
       </div>
-      <div className="p-3">
-        <div className="relative">
-          <Icon name="search" className="absolute right-3 top-2.5" />
-          <Input
-            className="pr-9"
-            placeholder="جستجو"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="px-3 pb-3">
-        <div className="flex gap-2">
-          <Input
-            placeholder="شناسه کاربر برای پیام خصوصی"
-            value={dmTarget}
-            onChange={(e) => setDmTarget(e.target.value)}
-          />
-          <Button
-            onClick={() =>
-              dmTarget && setCurrent({ type: "dm", withId: dmTarget })
-            }
-          >
-            <Icon name="plus" />
-          </Button>
-        </div>
+      <div className="p-3 space-y-3">
+        <div className="text-xs text-muted-foreground">لیست کاربران</div>
+        <UsersDirectory />
       </div>
       <ChatList />
     </div>

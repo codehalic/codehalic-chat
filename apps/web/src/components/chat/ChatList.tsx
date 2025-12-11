@@ -28,7 +28,7 @@ function ListItem({ active, title, preview, time, unread = 0, onClick }: ItemPro
 }
 
 export function ChatList() {
-  const { messages, current, setCurrent } = useChats()
+  const { messages, current, setCurrent, closeSidebar } = useChats()
 
   const items = Object.entries(messages).map(([key, list]) => {
     const last = list[list.length - 1]
@@ -39,7 +39,7 @@ export function ChatList() {
         preview: last?.content,
         time: last ? new Date(last.createdAt).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }) : undefined,
         unread: 0,
-        onClick: () => setCurrent({ type: 'group', room: 'room:lobby' }),
+        onClick: () => { setCurrent({ type: 'group', room: 'room:lobby' }); closeSidebar() },
       }
     }
     const withId = key.substring('dm:'.length)
@@ -50,7 +50,7 @@ export function ChatList() {
       preview: last?.content,
       time: last ? new Date(last.createdAt).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }) : undefined,
       unread,
-      onClick: () => setCurrent({ type: 'dm', withId }),
+      onClick: () => { setCurrent({ type: 'dm', withId }); closeSidebar() },
     }
   })
 
@@ -67,4 +67,3 @@ export function ChatList() {
     </div>
   )
 }
-

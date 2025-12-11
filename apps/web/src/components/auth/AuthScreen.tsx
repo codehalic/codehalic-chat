@@ -92,6 +92,12 @@ export function AuthScreen() {
     }
   };
 
+  React.useEffect(() => {
+    if (step === "code" && code.trim().length === 6 && !busy) {
+      onVerify();
+    }
+  }, [step, code, busy]);
+
   return (
     <div className="flex h-full items-center justify-center bg-background">
       <div className="w-full max-w-[420px] mx-3 overflow-hidden rounded-2xl border bg-secondary shadow-lg">
@@ -105,7 +111,7 @@ export function AuthScreen() {
         {step === "form" && (
           <div className="space-y-4 p-5 sm:p-6">
             <div className="text-sm text-muted-foreground">
-              لطفاً شماره موبایل ایران خود را وارد کنید
+              لطفاً شماره موبایل خود را وارد کنید
             </div>
             <div className="flex items-center gap-2" dir="ltr">
               <div className="rounded-md border bg-secondary px-3 py-2 text-sm">
@@ -160,20 +166,30 @@ export function AuthScreen() {
               <Input
                 dir="ltr"
                 className="text-left tracking-widest"
-                placeholder="12345"
+                placeholder="123456"
                 value={code}
-                onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
+                onChange={(e) =>
+                  setCode(toEnglishDigits(e.target.value).replace(/\D/g, ""))
+                }
               />
             </div>
-            {remain > 0 && (
+            {remain > 0 ? (
               <div className="text-xs text-muted-foreground">
                 ارسال دوباره پس از{" "}
                 {String(Math.floor(remain / 60)).padStart(2, "0")}:
                 {String(remain % 60).padStart(2, "0")}
               </div>
+            ) : (
+              <button
+                type="button"
+                className="text-xs text-primary hover:underline"
+                onClick={onChallenge}
+              >
+                ارسال دوباره کد
+              </button>
             )}
             {error && <div className="text-xs text-red-600">{error}</div>}
-            <div className="flex justify-end gap-2">
+            <div className="flex items-center justify-between gap-2">
               <Button className="gap-2" onClick={() => setStep("form")}>
                 <Icon name="arrow-right" />
                 بازگشت
@@ -181,14 +197,6 @@ export function AuthScreen() {
               <Button onClick={onVerify} disabled={busy} className="gap-2">
                 <Icon name="lock" />
                 ورود
-              </Button>
-              <Button
-                onClick={onChallenge}
-                disabled={remain > 0 || busy}
-                className="gap-2"
-              >
-                <Icon name="send" />
-                ارسال دوباره
               </Button>
             </div>
           </div>

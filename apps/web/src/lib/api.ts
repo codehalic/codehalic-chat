@@ -4,6 +4,8 @@ import {
   type AuthChallengeResponse,
   type AuthVerifyRequest,
   type AuthVerifyResponse,
+  UsersRoutes,
+  type UsersListResponse,
 } from "@repo/contracts";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
@@ -21,9 +23,19 @@ async function postJson<T>(url: string, body: any): Promise<T> {
   return res.json();
 }
 
+async function getJson<T>(url: string): Promise<T> {
+  const res = await fetch(API_BASE + url, { method: "GET" });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`http_${res.status}: ${text}`);
+  }
+  return res.json();
+}
+
 export const api = {
   challenge: (req: AuthChallengeRequest) =>
     postJson<AuthChallengeResponse>(AuthRoutes.Challenge, req),
   verify: (req: AuthVerifyRequest) =>
     postJson<AuthVerifyResponse>(AuthRoutes.Verify, req),
+  listUsers: () => getJson<UsersListResponse>(UsersRoutes.List),
 };

@@ -21,17 +21,17 @@
 
 .dark {
   color-scheme: dark;
-  --background: #0f172a;
-  --foreground: #e5e7eb;
-  --primary: #3390ec;
+  --background: #0e1621;
+  --foreground: #e6edf3;
+  --primary: #2a9df4;
   --primary-foreground: #f8fafc;
-  --secondary: #1f2937;
-  --secondary-foreground: #e5e7eb;
-  --muted: #1b2432;
-  --muted-foreground: #93a5be;
-  --border: #223047;
-  --input: #223047;
-  --ring: #2b3b55;
+  --secondary: #17212b;
+  --secondary-foreground: #e6edf3;
+  --muted: #1e2a38;
+  --muted-foreground: #98a6b5;
+  --border: #22384a;
+  --input: #22384a;
+  --ring: #2b4a63;
 }
 
 html, body, #root {

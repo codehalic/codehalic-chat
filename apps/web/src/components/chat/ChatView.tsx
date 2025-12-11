@@ -79,9 +79,9 @@ export function ChatView() {
 
   return (
     <div className="flex h-full flex-1 flex-col">
-      <div className="flex items-center gap-3 border-b bg-white p-3">
+      <div className="flex items-center gap-3 border-b border-border bg-secondary p-3">
         <button
-          className="sm:hidden rounded-md p-2 text-muted-foreground"
+          className="sm:hidden rounded-md p-2 text-muted-foreground hover:bg-muted"
           onClick={toggleSidebar}
         >
           <Icon name="arrow-right" />

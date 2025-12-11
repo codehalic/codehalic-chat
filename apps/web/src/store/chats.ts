@@ -26,7 +26,7 @@ type ChatsState = {
 
 export const useChats = create<ChatsState>()((set, get) => ({
   messages: {},
-  sidebarOpen: true,
+  sidebarOpen: false,
   setCurrent: (t) => set({ current: t }),
   setMessages: (key, list) =>
     set((s) => ({ messages: { ...s.messages, [key]: list } })),
