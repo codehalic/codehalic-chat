@@ -1,6 +1,6 @@
 export const AuthRoutes = {
-  Challenge: '/auth/challenge' as const,
-  Verify: '/auth/verify' as const,
+  Challenge: "/auth/challenge" as const,
+  Verify: "/auth/verify" as const,
 };
 
 export interface AuthChallengeRequest {
@@ -17,7 +17,9 @@ export interface SmsIrResult {
 
 export interface AuthChallengeResponse {
   ok: boolean;
-  otpPreview?: string;
+  expiresIn?: number;
+  remain?: number;
+  error?: "cooldown" | "service_unavailable" | "invalid_phone";
   sms?: SmsIrResult;
 }
 
@@ -37,6 +39,5 @@ export interface AuthVerifyResponse {
   ok: boolean;
   token?: string;
   user?: UserProfileDTO;
-  error?: 'invalid_code';
+  error?: "invalid_code";
 }
-
